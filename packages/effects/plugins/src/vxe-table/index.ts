@@ -1,4 +1,4 @@
-export { setupVbenVxeTable } from './init';
+export { AsyncComponents, setupVbenVxeTable } from './init';
 export type { VxeTableGridOptions } from './types';
 export * from './use-vxe-grid';
 
@@ -7,4 +7,6 @@ export type {
   VxeGridListeners,
   VxeGridProps,
   VxeGridPropTypes,
+  VxeTableInstance,
+  VxeToolbarInstance,
 } from 'vxe-table';

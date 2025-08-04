@@ -1,0 +1,62 @@
+{
+  "profile": {
+    "basicInfo": "基本资料",
+    "accountBind": "账号绑定",
+    "onlineDevices": "在线设备"
+  },
+  "password": {
+    "settings": "修改密码",
+    "oldPassword": "旧密码",
+    "inputOldPassword": "请输入旧密码",
+    "newPassword": "新密码",
+    "inputNewPassword": "请输入新密码",
+    "passwordMinLength": "密码长度不能少于8位",
+    "confirmPassword": "确认密码",
+    "inputConfirmPassword": "请再次输入新密码",
+    "passwordNotMatch": "两次输入的密码不一致",
+    "passwordStrength": "密码强度",
+    "weak": "弱",
+    "medium": "中",
+    "strong": "强",
+    "modify": "修改",
+    "passwordNotSame": "新密码不能与旧密码相同",
+    "passwordWeak": "密码强度较弱，建议提高密码强度"
+  },
+  "user": {
+    "name": "账号",
+    "nickname": "昵称",
+    "inputNickname": "请输入昵称",
+    "mobile": "手机号码",
+    "inputMobile": "请输入手机号码",
+    "email": "邮箱",
+    "inputEmail": "请输入邮箱",
+    "address": "地址",
+    "inputAddress": "请输入地址",
+    "skills": "技能",
+    "inputSkills": "请输入技能",
+    "gender": "性别",
+    "male": "男",
+    "female": "女",
+    "unknown": "未知",
+    "bio": "个人简介",
+    "inputBio": "请输入个人简介",
+    "tags": "个人标签",
+    "newTag": "新标签",
+    "noBio": "这个人很懒，什么都没有留下",
+    "lastLogin": "上次登录时间",
+    "personalTags": "个性标签"
+  },
+  "devices": {
+    "deviceName": "设备名称",
+    "currentDevice": "当前设备",
+    "ipAddress": "IP地址",
+    "browserSystem": "浏览器/系统",
+    "loginTime": "登录时间",
+    "status": "状态",
+    "online": "在线",
+    "offline": "离线",
+    "operation": "操作",
+    "kickout": "踢出",
+    "kickoutConfirm": "确定要踢出 {device} 吗？"
+  }
+}

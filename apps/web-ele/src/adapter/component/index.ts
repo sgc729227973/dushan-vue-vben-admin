@@ -15,6 +15,11 @@ import { $t } from '@vben/locales';
 
 import { ElNotification } from 'element-plus';
 
+import { Crontab } from '#/components/crontab';
+import { DataSourceUrl } from '#/components/data-source-url';
+import { Tinymce as RichTextarea } from '#/components/tinymce';
+import { FileUpload, ImageUpload } from '#/components/upload';
+
 const ElButton = defineAsyncComponent(() =>
   Promise.all([
     import('element-plus/es/components/button/index'),
@@ -117,6 +122,12 @@ const ElUpload = defineAsyncComponent(() =>
     import('element-plus/es/components/upload/style/css'),
   ]).then(([res]) => res.ElUpload),
 );
+const ElCascader = defineAsyncComponent(() =>
+  Promise.all([
+    import('element-plus/es/components/cascader/index'),
+    import('element-plus/es/components/cascader/style/css'),
+  ]).then(([res]) => res.ElCascader),
+);
 
 const withDefaultPlaceholder = <T extends Component>(
   component: T,
@@ -154,19 +165,27 @@ const withDefaultPlaceholder = <T extends Component>(
 
 // 这里需要自行根据业务组件库进行适配，需要用到的组件都需要在这里类型说明
 export type ComponentType =
+  | 'ApiCascader'
   | 'ApiSelect'
   | 'ApiTreeSelect'
   | 'Checkbox'
   | 'CheckboxGroup'
+  | 'Crontab'
+  | 'DataSourceUrl'
   | 'DatePicker'
   | 'Divider'
+  | 'FileUpload'
   | 'IconPicker'
+  | 'ImageUpload'
   | 'Input'
   | 'InputNumber'
   | 'RadioGroup'
+  | 'RangePicker'
+  | 'RichTextarea'
   | 'Select'
   | 'Space'
   | 'Switch'
+  | 'Textarea'
   | 'TimePicker'
   | 'TreeSelect'
   | 'Upload'
@@ -187,6 +206,24 @@ async function initComponentAdapter() {
         component: ElSelectV2,
         loadingSlot: 'loading',
         visibleEvent: 'onVisibleChange',
+      },
+    ),
+    DataSourceUrl: withDefaultPlaceholder(DataSourceUrl, 'input'),
+    ApiCascader: withDefaultPlaceholder(
+      {
+        ...ApiComponent,
+        name: 'ApiCascader',
+      },
+      'select',
+      {
+        component: ElCascader,
+        props: {
+          props: {
+            label: 'label',
+            value: 'value',
+            children: 'children',
+          },
+        },
       },
     ),
     ApiTreeSelect: withDefaultPlaceholder(
@@ -226,7 +263,7 @@ async function initComponentAdapter() {
     },
     // 自定义默认按钮
     DefaultButton: (props, { attrs, slots }) => {
-      return h(ElButton, { ...props, attrs, type: 'info' }, slots);
+      return h(ElButton, { ...props, attrs }, slots);
     },
     // 自定义主要按钮
     PrimaryButton: (props, { attrs, slots }) => {
@@ -285,6 +322,26 @@ async function initComponentAdapter() {
         slots,
       );
     },
+    RangePicker: (props, { attrs, slots }) => {
+      const { name, id } = props;
+      const extraProps: Recordable<any> = {};
+      if (name && !Array.isArray(name)) {
+        extraProps.name = [name, `${name}_end`];
+      }
+      if (id && !Array.isArray(id)) {
+        extraProps.id = [id, `${id}_end`];
+      }
+      return h(
+        ElDatePicker,
+        {
+          ...props,
+          type: 'datetimerange',
+          ...attrs,
+          ...extraProps,
+        },
+        slots,
+      );
+    },
     DatePicker: (props, { attrs, slots }) => {
       const { name, id, type } = props;
       const extraProps: Recordable<any> = {};
@@ -308,6 +365,14 @@ async function initComponentAdapter() {
     },
     TreeSelect: withDefaultPlaceholder(ElTreeSelect, 'select'),
     Upload: ElUpload,
+    FileUpload,
+    ImageUpload,
+    Textarea: withDefaultPlaceholder(ElInput, 'input', {
+      rows: 3,
+      type: 'textarea',
+    }),
+    RichTextarea,
+    Crontab,
   };
 
   // 将组件注册到全局共享状态中

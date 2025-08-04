@@ -11,6 +11,7 @@ import { useTitle } from '@vueuse/core';
 import { ElLoading } from 'element-plus';
 
 import { $t, setupI18n } from '#/locales';
+import { setupFormCreate } from '#/plugins/form-create';
 
 import { initComponentAdapter } from './adapter/component';
 import { initSetupVbenForm } from './adapter/form';
@@ -49,6 +50,12 @@ async function bootstrap(namespace: string) {
   // 配置 pinia-tore
   await initStores(app, { namespace });
 
+  // 启动 WebSocket 自动连接
+  const { setupWebSocketAutoConnect } = await import(
+    './services/websocket/autoConnect'
+  );
+  setupWebSocketAutoConnect();
+
   // 安装权限指令
   registerAccessDirective(app);
 
@@ -62,6 +69,9 @@ async function bootstrap(namespace: string) {
   // 配置Motion插件
   const { MotionPlugin } = await import('@vben/plugins/motion');
   app.use(MotionPlugin);
+
+  // formCreate
+  setupFormCreate(app);
 
   // 动态更新标题
   watchEffect(() => {

@@ -24,6 +24,10 @@ interface AccessState {
    */
   accessToken: AccessToken;
   /**
+   * 令牌过期时间（毫秒时间戳）
+   */
+  expiresAt: null | number;
+  /**
    * 是否已经检查过权限
    */
   isAccessChecked: boolean;
@@ -43,6 +47,14 @@ interface AccessState {
    * 登录 accessToken
    */
   refreshToken: AccessToken;
+  /**
+   * 登录租户编号
+   */
+  tenantId: null | number;
+  /**
+   * 访问租户编号
+   */
+  visitTenantId: null | number;
 }
 
 /**
@@ -85,6 +97,9 @@ export const useAccessStore = defineStore('core-access', {
     setAccessToken(token: AccessToken) {
       this.accessToken = token;
     },
+    setExpiresAt(expiresAt: null | number) {
+      this.expiresAt = expiresAt;
+    },
     setIsAccessChecked(isAccessChecked: boolean) {
       this.isAccessChecked = isAccessChecked;
     },
@@ -93,6 +108,19 @@ export const useAccessStore = defineStore('core-access', {
     },
     setRefreshToken(token: AccessToken) {
       this.refreshToken = token;
+    },
+    setTenantId(tenantId: null | number) {
+      this.tenantId = tenantId;
+    },
+    setVisitTenantId(visitTenantId: number) {
+      this.visitTenantId = visitTenantId;
+    },
+    /**
+     * 设置令牌信息
+     * @param token 访问令牌
+     */
+    setToken(token: AccessToken) {
+      this.accessToken = token;
     },
     unlockScreen() {
       this.isLockScreen = false;
@@ -104,7 +132,10 @@ export const useAccessStore = defineStore('core-access', {
     pick: [
       'accessToken',
       'refreshToken',
+      'expiresAt',
       'accessCodes',
+      'tenantId',
+      'visitTenantId',
       'isLockScreen',
       'lockScreenPassword',
     ],
@@ -114,11 +145,14 @@ export const useAccessStore = defineStore('core-access', {
     accessMenus: [],
     accessRoutes: [],
     accessToken: null,
+    expiresAt: null,
     isAccessChecked: false,
     isLockScreen: false,
     lockScreenPassword: undefined,
     loginExpired: false,
     refreshToken: null,
+    tenantId: null,
+    visitTenantId: null,
   }),
 });
 

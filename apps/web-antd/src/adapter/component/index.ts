@@ -15,6 +15,9 @@ import { $t } from '@vben/locales';
 
 import { notification } from 'ant-design-vue';
 
+import { Tinymce as RichTextarea } from '#/components/tinymce';
+import { FileUpload, ImageUpload } from '#/components/upload';
+
 const AutoComplete = defineAsyncComponent(
   () => import('ant-design-vue/es/auto-complete'),
 );
@@ -105,7 +108,9 @@ export type ComponentType =
   | 'DatePicker'
   | 'DefaultButton'
   | 'Divider'
+  | 'FileUpload'
   | 'IconPicker'
+  | 'ImageUpload'
   | 'Input'
   | 'InputNumber'
   | 'InputPassword'
@@ -115,6 +120,7 @@ export type ComponentType =
   | 'RadioGroup'
   | 'RangePicker'
   | 'Rate'
+  | 'RichTextarea'
   | 'Select'
   | 'Space'
   | 'Switch'
@@ -187,9 +193,12 @@ async function initComponentAdapter() {
     Space,
     Switch,
     Textarea: withDefaultPlaceholder(Textarea, 'input'),
+    RichTextarea,
     TimePicker,
     TreeSelect: withDefaultPlaceholder(TreeSelect, 'select'),
     Upload,
+    FileUpload,
+    ImageUpload,
   };
 
   // 将组件注册到全局共享状态中

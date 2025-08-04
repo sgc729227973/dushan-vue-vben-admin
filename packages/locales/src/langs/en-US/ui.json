@@ -7,20 +7,35 @@
     "length": "{0} must be {1} characters long",
     "alreadyExists": "{0} `{1}` already exists",
     "startWith": "{0} must start with `{1}`",
-    "invalidURL": "Please input a valid URL"
+    "invalidURL": "Please input a valid URL",
+    "mobile": "Please input a valid {0}"
   },
   "actionTitle": {
+    "copy": "Copy {0}",
+    "cancel": "Cancel {0}",
     "edit": "Modify {0}",
     "create": "Create {0}",
     "delete": "Delete {0}",
-    "view": "View {0}"
+    "deleteBatch": "Delete Batch",
+    "executionLog": "Execution Log",
+    "detail": "Detail {0}",
+    "view": "View {0}",
+    "import": "Import",
+    "export": "Export"
   },
   "actionMessage": {
     "deleteConfirm": "Are you sure to delete {0}?",
     "deleting": "Deleting {0} ...",
     "deleteSuccess": "{0} deleted successfully",
+    "deleteFailed": "{0} deleted failed",
     "operationSuccess": "Operation succeeded",
-    "operationFailed": "Operation failed"
+    "operationFailed": "Operation failed",
+    "importSuccess": "Import succeeded",
+    "importFail": "Import failed",
+    "downloadTemplateFail": "Download template failed",
+    "updating": "Updating {0}...",
+    "updateSuccess": "Update {0} successfully",
+    "updateFailed": "Update {0} failed"
   },
   "placeholder": {
     "input": "Please enter",
@@ -74,6 +89,7 @@
   },
   "widgets": {
     "document": "Document",
+    "profile": "Profile",
     "qa": "Q&A",
     "setting": "Settings",
     "logoutTip": "Do you want to logout?",
@@ -103,5 +119,30 @@
       "backToLogin": "Back to login",
       "entry": "Enter the system"
     }
+  },
+  "upload": {
+    "upload": "Upload",
+    "imgUpload": "ImageUpload",
+    "accept": "Support {0} format",
+    "acceptUpload": "Only upload files in {0} format",
+    "maxSize": "A single file does not exceed {0}MB",
+    "maxSizeMultiple": "Only upload files up to {0}MB!",
+    "maxNumber": "Only upload up to {0} files",
+    "uploadSuccess": "Upload successfully"
+  },
+  "cropper": {
+    "selectImage": "Select Image",
+    "uploadSuccess": "Uploaded success!",
+    "imageTooBig": "Image too big",
+    "modalTitle": "Avatar upload",
+    "okText": "Confirm and upload",
+    "btn_reset": "Reset",
+    "btn_rotate_left": "Counterclockwise rotation",
+    "btn_rotate_right": "Clockwise rotation",
+    "btn_scale_x": "Flip horizontal",
+    "btn_scale_y": "Flip vertical",
+    "btn_zoom_in": "Zoom in",
+    "btn_zoom_out": "Zoom out",
+    "preview": "Preview"
   }
 }

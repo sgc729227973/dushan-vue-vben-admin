@@ -1,6 +1,6 @@
 {
   "name": "@vben/web-antd",
-  "version": "5.5.8",
+  "version": "5.5.7",
   "homepage": "https://vben.pro",
   "bugs": "https://github.com/vbenjs/vue-vben-admin/issues",
   "repository": {
@@ -26,6 +26,9 @@
     "#/*": "./src/*"
   },
   "dependencies": {
+    "@form-create/ant-design-vue": "catalog:",
+    "@form-create/antd-designer": "catalog:",
+    "@tinymce/tinymce-vue": "catalog:",
     "@vben/access": "workspace:*",
     "@vben/common-ui": "workspace:*",
     "@vben/constants": "workspace:*",
@@ -41,10 +44,19 @@
     "@vben/types": "workspace:*",
     "@vben/utils": "workspace:*",
     "@vueuse/core": "catalog:",
+    "@vueuse/integrations": "catalog:",
     "ant-design-vue": "catalog:",
+    "cropperjs": "catalog:",
+    "crypto-js": "catalog:",
     "dayjs": "catalog:",
+    "highlight.js": "catalog:",
     "pinia": "catalog:",
     "vue": "catalog:",
-    "vue-router": "catalog:"
+    "vue-dompurify-html": "catalog:",
+    "vue-router": "catalog:",
+    "vue3-signature": "catalog:"
+  },
+  "devDependencies": {
+    "@types/crypto-js": "catalog:"
   }
 }

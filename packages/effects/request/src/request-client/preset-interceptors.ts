@@ -6,6 +6,11 @@ import { isFunction } from '@vben/utils';
 
 import axios from 'axios';
 
+import {
+  triggerConnectCallbacks,
+  triggerDisconnectCallbacks,
+} from '../websocket';
+
 export const defaultResponseInterceptor = ({
   codeField = 'code',
   dataField = 'data',
@@ -59,9 +64,9 @@ export const authenticateResponseInterceptor = ({
 }): ResponseInterceptorConfig => {
   return {
     rejected: async (error) => {
-      const { config, response } = error;
+      const { config, response, data: responseData } = error;
       // 如果不是 401 错误，直接抛出异常
-      if (response?.status !== 401) {
+      if (response?.status !== 401 && responseData?.code !== 401) {
         throw error;
       }
       // 判断是否启用了 refreshToken 功能
@@ -85,6 +90,9 @@ export const authenticateResponseInterceptor = ({
       // 标记当前请求为重试请求，避免无限循环
       config.__isRetryRequest = true;
 
+      // 当令牌过期时，先触发断开WebSocket连接的回调
+      triggerDisconnectCallbacks();
+
       try {
         const newToken = await doRefreshToken();
 
@@ -92,6 +100,9 @@ export const authenticateResponseInterceptor = ({
         client.refreshTokenQueue.forEach((callback) => callback(newToken));
         // 清空队列
         client.refreshTokenQueue = [];
+
+        // 令牌刷新成功后，触发WebSocket重新连接回调
+        triggerConnectCallbacks();
 
         return client.request(error.config.url, { ...error.config });
       } catch (refreshError) {
@@ -131,7 +142,8 @@ export const errorMessageResponseInterceptor = (
       }
 
       let errorMessage = '';
-      const status = error?.response?.status;
+      const status =
+        error?.code || error?.response?.data?.code || error?.response?.status;
 
       switch (status) {
         case 400: {

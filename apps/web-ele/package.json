@@ -1,6 +1,6 @@
 {
   "name": "@vben/web-ele",
-  "version": "5.5.8",
+  "version": "5.5.7",
   "homepage": "https://vben.pro",
   "bugs": "https://github.com/vbenjs/vue-vben-admin/issues",
   "repository": {
@@ -26,6 +26,9 @@
     "#/*": "./src/*"
   },
   "dependencies": {
+    "@form-create/designer": "catalog:",
+    "@form-create/element-ui": "catalog:",
+    "@tinymce/tinymce-vue": "catalog:",
     "@vben/access": "workspace:*",
     "@vben/common-ui": "workspace:*",
     "@vben/constants": "workspace:*",
@@ -41,8 +44,11 @@
     "@vben/types": "workspace:*",
     "@vben/utils": "workspace:*",
     "@vueuse/core": "catalog:",
+    "cropperjs": "catalog:",
+    "crypto-js": "catalog:",
     "dayjs": "catalog:",
     "element-plus": "catalog:",
+    "highlight.js": "catalog:",
     "pinia": "catalog:",
     "vue": "catalog:",
     "vue-router": "catalog:"
